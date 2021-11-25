@@ -1,25 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
+import { useCounter } from "../../hooks/useCounter";
 
-export const ItemCount = ({ stock, initial = 1, onAdd }) => {
-  const [cantidad, setCantidad] = useState(initial);
-
-  const handleSumar = () => {
-    cantidad < stock && setCantidad(parseInt(cantidad) + 1);
-  };
-
-  const handleRestar = () => {
-    cantidad > initial && setCantidad(parseInt(cantidad) - 1);
-  };
+export const ItemCount = ({ initial = 1, limit = 5, onAdd }) => {
+  const { count, increment, decrement, reset } = useCounter(initial, limit);
 
   return (
     <div className="d-inline-flex flex-column border rounded border-dark p-1">
       <div className="d-flex justify-content-center align-items-center">
-        <button onClick={handleRestar} className="btn fs-1">
+        <button onClick={decrement} className="btn fs-1">
           <AiFillMinusCircle />
         </button>
-        <span className="fs-1 mx-2">{cantidad}</span>
-        <button onClick={handleSumar} className="btn fs-1">
+        <span className="fs-1 mx-2">{count}</span>
+        <button onClick={increment} className="btn fs-1">
           <AiFillPlusCircle />
         </button>
       </div>
