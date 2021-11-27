@@ -6,7 +6,7 @@ export const getFigures = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(preorders);
-    }, 600);
+    }, 100);
   });
 };
 
@@ -14,6 +14,6 @@ export const getFigure = (id) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(preorders.find((fig) => fig.id === id));
-    }, 500);
+    }, 100);
   });
 };

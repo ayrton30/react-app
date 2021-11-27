@@ -1,10 +1,7 @@
 import React from "react";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
-import { useCounter } from "../../hooks/useCounter";
 
-export const ItemCount = ({ initial = 1, limit = 5, onAdd }) => {
-  const { count, increment, decrement, reset } = useCounter(initial, limit);
-
+export const ItemCount = ({ count, increment, decrement, onAdd }) => {
   return (
     <div className="d-inline-flex flex-column border rounded border-dark p-1">
       <div className="d-flex justify-content-center align-items-center">
@@ -16,11 +13,13 @@ export const ItemCount = ({ initial = 1, limit = 5, onAdd }) => {
           <AiFillPlusCircle />
         </button>
       </div>
-      <div>
-        <button onClick={onAdd} className="btn btn-success fs-3">
-          Agregar
-        </button>
-      </div>
+      {onAdd && (
+        <div>
+          <button onClick={onAdd} className="btn btn-success fs-3">
+            Agregar
+          </button>
+        </div>
+      )}
     </div>
   );
 };

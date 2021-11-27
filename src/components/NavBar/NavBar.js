@@ -1,25 +1,28 @@
 import React from "react";
 import "./NavBar.css";
-import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
+import { Navbar, Container } from "react-bootstrap";
 import { MdSmartToy } from "react-icons/md";
 import { CartWidget } from "../CartWidget/CartWidget";
+import { Link } from "react-router-dom";
 
 export const NavBar = () => {
   return (
     <header>
       <Navbar bg="dark" variant="primary">
         <Container>
-          <Navbar.Brand href="#home" className="fs-2">
-            <MdSmartToy /> Figs
-          </Navbar.Brand>
+          <Link to="/">
+            <div className="fs-2">
+              <MdSmartToy /> Figs
+            </div>
+          </Link>
+
           <div className="d-flex justify-content-end">
-            <Nav.Link href="#">Enlace 1</Nav.Link>
-            <NavDropdown title="Categorias" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/1">Fig Marca 1</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/2">FigMarca 2</NavDropdown.Item>
-            </NavDropdown>
-            <CartWidget />
+            <Link to="/category/nendo">Nendoroid</Link>
+            <Link to="/category/figma">figma</Link>
+            <Link to="/category/scale">Figuras en escala</Link>
+            <Link to="/cart">
+              <CartWidget />
+            </Link>
           </div>
         </Container>
       </Navbar>

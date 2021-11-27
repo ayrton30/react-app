@@ -5,10 +5,12 @@ export const useCounter = (initial, preorderLimit) => {
 
   const increment = () => {
     count < preorderLimit && setCount(parseInt(count) + 1);
+    console.log(count);
   };
 
   const decrement = () => {
     count > initial && setCount(parseInt(count) - 1);
+    console.log(count);
   };
 
   const reset = () => {
@@ -24,6 +26,5 @@ export const useCounter = (initial, preorderLimit) => {
     decrement,
     //es la función para resetear el contador
     reset,
-    //es la función que setea el estado del contador
   };
 };
