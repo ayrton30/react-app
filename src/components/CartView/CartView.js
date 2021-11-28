@@ -16,12 +16,12 @@ export const CartView = () => {
   } = useContext(CartContext);
 
   return (
-    <div className="container">
-      <h1>Carrito de compras</h1>
+    <div className="my-5 text container">
+      <h1 className="fw-bold display-2">Carrito de compras:</h1>
       {cart.length === 0 ? (
         <>
-          <h2>Tu carrito está vacío</h2>
-          <Link className="btn btn-primary" to="/">
+          <h2 className="p-5 text-center display-3">Tu carrito está vacío</h2>
+          <Link className="fs-2 btn" to="/">
             Ver figuras
           </Link>
         </>
@@ -29,28 +29,32 @@ export const CartView = () => {
         <>
           {cart.map((fig) => (
             <div
-              className="d-flex flex-column border border-dark m-2 p-2"
+              className="d-flex detailContainer align-items-center justify-content-between my-4 p-4"
               key={fig.id}
             >
-              <h3>{fig.name}</h3>
-              <h3>¥{fig.price}</h3>
-              <h3>{fig.amount}</h3>
-              <ItemCount
-                count={fig.amount}
-                increment={() => incrementAmount(fig)}
-                decrement={() => decrementAmount(fig)}
-              />
+              <div>
+                <img className="w-25" src={fig.img} />
+                <h3>{fig.name}</h3>
+                <h3>¥ {fig.price}</h3>
+              </div>
+              <div className="d-flex">
+                <ItemCount
+                  count={fig.amount}
+                  increment={() => incrementAmount(fig)}
+                  decrement={() => decrementAmount(fig)}
+                />
 
-              <button
-                className="btn btn-danger"
-                onClick={() => removeCart(fig.id)}
-              >
-                <BsFillTrashFill />
-              </button>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => removeCart(fig.id)}
+                >
+                  <BsFillTrashFill />
+                </button>
+              </div>
             </div>
           ))}
-          <h1>Total de productos: {countCart()}</h1>
-          <h1>Total: {totalCart()}</h1>
+          <h1 className="mt-3">Total de productos: {countCart()}</h1>
+          <h1>Total: ¥ {totalCart()}</h1>
 
           <button onClick={emptyCart} className="btn btn-danger">
             Vaciar carrito

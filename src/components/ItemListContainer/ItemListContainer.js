@@ -1,13 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getFigures } from "../../utils/preorderAPI";
 import { ItemList } from "../ItemList/ItemList";
+import "../ItemListContainer/ItemListContainer.css";
 
 export const ItemListContainer = () => {
-  const handlerBotonComprar = () => {
-    alert("Agregado al carrito");
-  };
-
   const [items, setItems] = useState([]);
   //categoria del producto
   //si estoy en inicio el params = undefined
@@ -30,10 +27,11 @@ export const ItemListContainer = () => {
   }, [brand]);
 
   return (
-    <div className=" border border-dark m-2 text-center">
-      <h1>¡Bienvenido a la tienda!</h1>
-      <h2>ItemListContainer</h2>
+    <>
+      <div className="mt-5 p-3 welcome text-center">
+        <h1>¡Bienvenido a la tienda!</h1>
+      </div>
       {items && <ItemList items={items} />}
-    </div>
+    </>
   );
 };

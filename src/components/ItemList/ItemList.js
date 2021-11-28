@@ -3,10 +3,11 @@ import { Item } from "../Item/Item";
 
 export const ItemList = ({ items }) => {
   return (
-    <div className="border border-dark m-2">
-      <h3>ItemList</h3>
+    <div className="my-3 row row-cols-1 row-cols-sm-2 g-3">
       {items.map((fig) => (
-        <Item key={fig.id} item={fig} />
+        <div class="col">
+          <Item key={fig.id} item={fig} />
+        </div>
       ))}
     </div>
   );

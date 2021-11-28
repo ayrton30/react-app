@@ -7,7 +7,7 @@ export const CartWidget = () => {
   const { countCart } = useContext(CartContext);
 
   return (
-    <div className="cart-widget fs-4 d-flex align-items-center">
+    <div className="cart-widget fs-3 p-2 d-flex align-items-center">
       <HiShoppingCart />
       <span>{countCart()}</span>
     </div>

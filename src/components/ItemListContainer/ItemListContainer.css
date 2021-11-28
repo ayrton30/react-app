@@ -1,3 +1,6 @@
-.border {
-  color: blue;
+.welcome {
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: -20px 20px 60px #c7cfd5, 20px -20px 60px #ffffff;
+  font-family: "Cabin", sans-serif;
 }
