@@ -14,6 +14,6 @@ export const getFigure = (id) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(preorders.find((fig) => fig.id === id));
-    }, 100);
+    }, 500);
   });
 };

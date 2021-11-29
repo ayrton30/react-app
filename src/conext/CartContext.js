@@ -40,17 +40,31 @@ export const CartProvider = ({ children }) => {
   };
 
   const incrementAmount = (item) => {
-    let index = cart.findIndex((n) => n.id === item.id);
-    item.amount < maxAmount && cart[index].amount++;
-    setCart(cart);
-    console.log(cart);
+    //busco el elemento en el carro
+    const index = cart.findIndex((n) => n.id === item.id);
+    if (index != -1) {
+      const actualAmount = cart[index].amount;
+      //verificar que se pueda agregar items
+      if (actualAmount < maxAmount) {
+        let newCart = [...cart];
+        newCart[index] = { ...newCart[index], amount: actualAmount + 1 };
+        setCart(newCart);
+      }
+    }
   };
 
   const decrementAmount = (item) => {
-    let index = cart.findIndex((n) => n.id === item.id);
-    item.amount > initialAmount && cart[index].amount--;
-    setCart(cart);
-    console.log(cart);
+    //busco el elemento en el carro
+    const index = cart.findIndex((n) => n.id === item.id);
+    if (index != -1) {
+      const actualAmount = cart[index].amount;
+      //verificar que se pueda quitar
+      if (actualAmount > initialAmount) {
+        let newCart = [...cart];
+        newCart[index] = { ...newCart[index], amount: actualAmount - 1 };
+        setCart(newCart);
+      }
+    }
   };
 
   return (
