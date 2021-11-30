@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../conext/CartContext";
-import { BsFillTrashFill } from "react-icons/bs";
+import { BsFillTrashFill, BsCheckLg } from "react-icons/bs";
 import { ItemCount } from "../ItemCount/ItemCount";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 export const CartView = () => {
   const {
@@ -19,10 +20,11 @@ export const CartView = () => {
   if (cart.length === 0) {
     return (
       <>
-        <div className="my-5 text container">
-          <h1 className="fw-bold display-2">Carrito de compras:</h1>
-          <h2 className="p-5 text-center display-3">Tu carrito está vacío</h2>
-          <Link className="fs-2 btn" to="/">
+        <div className="welcome p-5 my-5 text container">
+          <h2 className="text-center fs-1">
+            Tu carrito de compras se encuentra vacío
+          </h2>
+          <Link className="mt-5 fs-3 btn" to="/">
             Ver figuras
           </Link>
         </div>
@@ -33,7 +35,7 @@ export const CartView = () => {
   //si tengo compras en el carrito
   return (
     <div className="my-5 text container">
-      <h1 className="fw-bold display-2">Carrito de compras:</h1>
+      <h1 className="fw-bold fs-1">Carrito de compras:</h1>
 
       <>
         {cart.map((fig) => (
@@ -53,19 +55,32 @@ export const CartView = () => {
                 decrement={() => decrementAmount(fig)}
               />
 
-              <button className="fs-1 btn" onClick={() => removeCart(fig.id)}>
+              <button
+                className="mx-2 fs-2 btn"
+                onClick={() => removeCart(fig.id)}
+              >
                 <BsFillTrashFill />
               </button>
             </div>
           </div>
         ))}
-        <h1 className="mt-3">Total de productos: {countCart()}</h1>
-        <h1>Total: ¥ {totalCart()}</h1>
+        <div className="p-4 mb-3 detailContainer">
+          <h1 className="mt-3">Total de productos: {countCart()}</h1>
+          <h1 className="fw-bold ">Total: ¥ {totalCart()}</h1>
+        </div>
 
-        <button onClick={emptyCart} className="btn btn-danger">
-          Vaciar carrito
+        <button
+          onClick={emptyCart}
+          className="d-flex gap-2 justify-content-center align-items-center fs-3 w-100 mb-3 btn"
+        >
+          <BsFillTrashFill /> Vaciar carrito
         </button>
-        <button className="btn btn-success">Terminar mi compra</button>
+        <Link
+          to="/checkout"
+          className="d-flex gap-2 justify-content-center align-items-center text fw-bold fs-3 p-3 cart-widget"
+        >
+          <BsCheckLg /> Terminar mi compra
+        </Link>
       </>
     </div>
   );

@@ -45,15 +45,21 @@ export const ItemListContainer = () => {
   }, [brand]);
 
   return (
-    <div className="mt-5 p-3 welcome text-center">
+    <>
       {isLoading ? (
-        <Loader />
+        <>
+          <div className="mt-5 p-3 welcome text-center">
+            <Loader />
+          </div>
+        </>
       ) : (
         <>
-          <h1>¡Bienvenido a la tienda!</h1>
+          <div className="mt-5 p-3 welcome text-center">
+            <h1>¡Bienvenido a la tienda!</h1>
+          </div>
           <ItemList items={items} />
         </>
       )}
-    </div>
+    </>
   );
 };
