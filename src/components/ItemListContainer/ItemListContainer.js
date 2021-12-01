@@ -5,6 +5,12 @@ import { ItemList } from "../ItemList/ItemList";
 import "../ItemListContainer/ItemListContainer.css";
 import { collection, getDocs, query, where } from "firebase/firestore/lite";
 import { Loader } from "../Loader/Loader";
+import {
+  Popover,
+  PopoverContent,
+  PopoverCloseButton,
+  PopoverTrigger,
+} from "../Popover/Popover";
 
 export const ItemListContainer = () => {
   const [items, setItems] = useState([]);
@@ -57,6 +63,29 @@ export const ItemListContainer = () => {
           <div className="mt-5 p-3 welcome text-center">
             <h1>¡Bienvenido a la tienda!</h1>
           </div>
+          <Popover>
+            <PopoverTrigger>
+              <div className="mt-3 p-3 welcome gradient text-center">
+                <h1 className="gradient">Ofertas y descuentos</h1>
+              </div>
+            </PopoverTrigger>
+
+            <PopoverContent>
+              <>
+                <div className="p-5 welcome">
+                  <PopoverCloseButton />
+                  <h1 className="fw-bold">
+                    Este mes tenemos muchos descuentos para vos.
+                  </h1>
+                  <h2>
+                    En tu primera compra te regalamos ¥ 1000 en cualquier
+                    preorder usando el cupón PRIMERCOMPRA.
+                  </h2>
+                </div>
+              </>
+            </PopoverContent>
+          </Popover>
+
           <ItemList items={items} />
         </>
       )}
