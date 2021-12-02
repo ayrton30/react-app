@@ -1,5 +1,7 @@
 # E-commerce Good Smile 🙂
-Desarrollado para el curso de React JavaScript de CoderHouse. 
+Desarrollado para el curso de React JavaScript de CoderHouse.
+
+![](example.gif)
 
 ### Caracteristicas
 - El usuario puede mirar todas las figuras disponibles o filtrar según la categoria que le interese ('nendoroid', 'figma', o 'figura en escala'). 
