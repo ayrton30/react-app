@@ -9,7 +9,6 @@ export const CartProvider = ({ children }) => {
   //muchos componentes que dependen de esta informacion
 
   const [cart, setCart] = useState([]);
-  console.log(cart);
 
   //variables globales de cantidad maxima de reserva para distintas marcas de figuras
   const [initialAmount] = useState(1);
@@ -42,7 +41,7 @@ export const CartProvider = ({ children }) => {
   const incrementAmount = (item) => {
     //busco el elemento en el carro
     const index = cart.findIndex((n) => n.id === item.id);
-    if (index != -1) {
+    if (index !== -1) {
       const actualAmount = cart[index].amount;
       //verificar que se pueda agregar items
       if (actualAmount < maxAmount) {
@@ -56,7 +55,7 @@ export const CartProvider = ({ children }) => {
   const decrementAmount = (item) => {
     //busco el elemento en el carro
     const index = cart.findIndex((n) => n.id === item.id);
-    if (index != -1) {
+    if (index !== -1) {
       const actualAmount = cart[index].amount;
       //verificar que se pueda quitar
       if (actualAmount > initialAmount) {

@@ -1,16 +1,15 @@
 import { useState } from "react";
 
 export const useCounter = (initial, preorderLimit) => {
+  //para el estado del counter en el componente ItemDetail
   const [count, setCount] = useState(initial);
 
   const increment = () => {
     count < preorderLimit && setCount(parseInt(count) + 1);
-    console.log(count);
   };
 
   const decrement = () => {
     count > initial && setCount(parseInt(count) - 1);
-    console.log(count);
   };
 
   const reset = () => {

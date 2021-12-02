@@ -38,10 +38,10 @@ export const ItemDetail = ({ item }) => {
 
       <div className="d-flex gap-5 align-items-center mb-4">
         <div>
-          <img className="img" src={item.img} />
+          <img className="img" src={item.img} alt={item.name} />
         </div>
         <div className="d-flex flex-column align-items-start text">
-          <h1 className="display-2 title">{item.name}</h1>
+          <h1 className="display-3 title">{item.name}</h1>
           <h1 className="fs-2">Price: ¥ {item.price}</h1>
           <h1 className="fs-2">Release date: {item.releaseDate}</h1>
           <h1 className="fs-5 px-3 py-1 preorder">Pre-Order</h1>
