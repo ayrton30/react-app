@@ -29,7 +29,7 @@ export const ItemDetailContainer = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, [id]);
+  }, [item, id]);
 
   return (
     <div className="my-5 p-5 detailContainer">

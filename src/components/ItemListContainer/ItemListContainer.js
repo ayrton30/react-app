@@ -17,37 +17,40 @@ export const ItemListContainer = () => {
   const [isLoading, setLoading] = useState(true);
 
   //categoria del producto
-  //si estoy en inicio el params = undefined
+  //si estoy en inicio el params(es decir brand) = undefined
   const { brand } = useParams();
 
   //Al momento de montaje
-  useEffect(async () => {
+  useEffect(() => {
     //consumiendo nuestra base de datos
+    async function fetchData() {
+      //crear la referencia a nuestra coleccion de datos
+      const preordersRef = collection(db, "preorders");
+      //para filtrar figuras -> query
+      const q = brand
+        ? query(preordersRef, where("brand", "==", brand))
+        : preordersRef;
 
-    //crear la referencia a nuestra coleccion de datos
-    const preordersRef = collection(db, "preorders");
-    //para filtrar figuras -> query
-    const q = brand
-      ? query(preordersRef, where("brand", "==", brand))
-      : preordersRef;
+      await getDocs(q)
+        .then((response) => {
+          //console.log(response);
+          const preorders = response.docs.map((doc) => {
+            //para añadir id de firebase de cada documento
+            return {
+              id: doc.id,
+              ...doc.data(),
+            };
+          });
+          console.log(preorders);
 
-    getDocs(q)
-      .then((response) => {
-        //console.log(response);
-        const preorders = response.docs.map((doc) => {
-          //para añadir id de firebase de cada documento
-          return {
-            id: doc.id,
-            ...doc.data(),
-          };
+          setItems(preorders);
+        })
+        .finally(() => {
+          setLoading(false);
         });
-        console.log(preorders);
+    }
 
-        setItems(preorders);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    fetchData();
   }, [brand]);
 
   return (
