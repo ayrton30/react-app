@@ -41,8 +41,6 @@ export const ItemListContainer = () => {
               ...doc.data(),
             };
           });
-          console.log(preorders);
-
           setItems(preorders);
         })
         .finally(() => {

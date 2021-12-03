@@ -43,7 +43,7 @@ export const NavBar = () => {
       <Navbar className="d-flex flex-wrap my_nav">
         <Container>
           <Link className="link_title gradient" to="/">
-            <div className="fs-1">Good Smile :)</div>
+            <div className="fs-1">GoodSmile</div>
           </Link>
 
           <div className="d-flex justify-content-end align-items-center gap-2 flex-nowrap fs-4">

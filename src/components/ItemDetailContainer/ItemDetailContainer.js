@@ -14,21 +14,25 @@ export const ItemDetailContainer = () => {
 
   useEffect(() => {
     //crear la referencia a nuestra coleccion de datos
-    const preordersRef = collection(db, "preorders");
-    //obtenemos documento -> figura en particular con el param id
-    const docRef = doc(preordersRef, id);
 
-    getDoc(docRef)
-      .then((response) => {
-        setItem({
-          id: response.id,
-          ...response.data(),
+    async function fetchData() {
+      const preordersRef = collection(db, "preorders");
+      //obtenemos documento -> figura en particular con el param id
+      const docRef = doc(preordersRef, id);
+
+      await getDoc(docRef)
+        .then((response) => {
+          setItem({
+            id: response.id,
+            ...response.data(),
+          });
+        })
+        .finally(() => {
+          setLoading(false);
         });
-        console.log(item);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    }
+
+    fetchData();
   }, [item, id]);
 
   return (

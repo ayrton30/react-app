@@ -1,13 +1,17 @@
 import React, { useContext } from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { CartContext } from "../../conext/CartContext";
 import { newOrder } from "../../firebase/newOrder";
+import "../CheckoutForm/CheckoutForm.css";
 
 const schema = Yup.object().shape({
-  nombre: Yup.string().required().min(4).max(30),
-  email: Yup.string().required().email(),
-  tel: Yup.string().required(),
+  nombre: Yup.string()
+    .required("Dato requerido")
+    .min(4, "Demasiado corto!")
+    .max(30, "Demasiado largo!"),
+  email: Yup.string().required("Dato requerido").email("Invalido"),
+  tel: Yup.string().required("Dato requerido"),
 });
 
 export const CheckoutForm = (props) => {
@@ -22,21 +26,30 @@ export const CheckoutForm = (props) => {
       }}
     >
       <Form>
+        <ErrorMessage name="nombre">
+          {(msg) => <div className="px-2 errorMessage">{msg}</div>}
+        </ErrorMessage>
         <Field
           name="nombre"
-          className="fs-2 form-control text my-2"
+          className="fs-2 form-control my-2"
           type="text"
           placeholder="Nombre y Apellido"
         />
+        <ErrorMessage name="email">
+          {(msg) => <div className="px-2 errorMessage">{msg}</div>}
+        </ErrorMessage>
         <Field
           name="email"
-          className="fs-2 form-control text my-2"
+          className="fs-2 form-control my-2"
           type="mail"
           placeholder="example@gmail.com"
         />
+        <ErrorMessage name="tel">
+          {(msg) => <div className="px-2 errorMessage">{msg}</div>}
+        </ErrorMessage>
         <Field
           name="tel"
-          className="fs-2 form-control text my-2"
+          className="fs-2 form-control my-2"
           type="tel"
           placeholder="Teléfono"
         />
